@@ -1,7 +1,7 @@
 // Import csv to json and the reverse to simulate a database
 const CSVToJSON = require('csvtojson');
 const JSONToCSV = require("json2csv").parse;
-const FileSystem = require('fs');
+// const fs = require('fs');
 
 // Define action types as constants
 const GET_WORK_ORDERS = 'workOrders/GET_WORK_ORDERS'
@@ -15,7 +15,7 @@ const getWorkOrders = (workOrders) => {
 }
 
 //Create thunks to call routes and initiate actions
-export const getWorkOrdersThunk = () => {
+export const getWorkOrdersThunk = () => async (dispatch) => {
   const data =  CSVToJSON().fromFile("./public/workOrders.csv").then(source => {
         console.log(source);
     })
