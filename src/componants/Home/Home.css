@@ -1,0 +1,34 @@
+#no-work-orders{
+    text-align: center;
+}
+
+.home-outer-wrapper {
+    text-align: center;
+    align-content: center;
+    margin: 2rem;
+}
+
+table.ii.table-striped > tbody > tr> td,
+table.ii {
+
+    color:black;
+    background-color: #c4ebf1;
+    font-weight:bold;
+    text-align: center;
+    border: 1px solid white;
+}
+
+#description {
+    width: 30vw;
+}
+
+.table_head {
+    font-size: 1.2rem;
+    padding-right: 4rem;
+    padding: 2rem;
+    background-color: rgb(235, 241, 243);
+}
+
+.edit_button, .delete_button {
+    margin: 2rem;
+}
