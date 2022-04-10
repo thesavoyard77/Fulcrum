@@ -34,6 +34,8 @@ export default function Table() {
                             <th className="table_head">Unit</th>
                             <th className="table_head" id="description">Description</th>
                             <th className="table_head">Labor Hours</th>
+                            <th className="table_head">Labor Cost</th>
+                            <th className="table_head">Material Cost</th>
                             <th className="table_head">Total</th>
                         </tr>
                     </thead>
@@ -45,9 +47,11 @@ export default function Table() {
                                 <td className="table_data">{workOrder?.Unit}</td>
                                 <td className="table_data">{workOrder?.Description}</td>
                                 <td className="table_data">{workOrder?.Labor_Hours}</td>
+                                <td className="table_data">{`\$${workOrder?.Labor_cost}`}</td>
+                                <td className="table_data">{`\$${workOrder?.Material_cost}`}</td>
                                 <td className="table_data">{`\$${workOrder?.Total}`}</td>
                                 <td className="table_data">
-                                    <Button variant="info" size="sm" id="edit_button">Edit</Button>
+                                    <Button variant="info" size="sm" id="edit_button">Print</Button>
                                 </td>
                                 <td className="table_data">
                                     <Button variant="danger" size="sm" id="delete_button" onClick={() => handleDelete(index)}>Delete</Button>

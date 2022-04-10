@@ -19,7 +19,7 @@ table.ii {
 }
 
 #description {
-    width: 30vw;
+    overflow: hidden;
 }
 
 .table_head {

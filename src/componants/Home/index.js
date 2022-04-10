@@ -11,7 +11,7 @@ export default function Home() {
 
     return(
         <div className="home-outer-wrapper">
-         <h1>Open Work Orders</h1>
+         <h1>Work Order Estimates</h1>
          <Table />
         </div>
 )};
