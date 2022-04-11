@@ -1,9 +1,11 @@
+import './Form.css'
 import React from 'react';
 import { useState, useEffect } from "react";
 import Button from 'react-bootstrap/Button';
 import { csv } from 'd3';
 import { Col, Row, Form } from "react-bootstrap";
 const data = require('../public/workOrders.csv');
+
 
 export default function AddWorkOrder() {
 
@@ -18,7 +20,7 @@ export default function AddWorkOrder() {
 
     return (
 <>
-    <Form>
+    <Form className="form form-add xx">
     <Row className="mb-3">
         <Form.Group as={Col} controlId="formGridWorkOrderNumber">
         <Form.Label>Work Order Number</Form.Label>
@@ -53,30 +55,38 @@ export default function AddWorkOrder() {
             <option>HVAC Service</option>
         </Form.Select>
         </Form.Group>
+
+        <Form.Group as={Col} className="mb-3" controlId="formGridMaterialCost">
+            <Form.Label>Material Cost</Form.Label>
+            <Form.Control  />
+            <Form.Text>
+                Must be in 25.99 format, no dollar sign
+            </Form.Text>
+        </Form.Group>
     </Row>
     <Row className="mb-3">
-        <Form.Group as={Col} controlId="formGridCity">
-        <Form.Label>City</Form.Label>
-        <Form.Control />
+        <Form.Group as={Col} className="mb-3" controlId="formGridHours">
+            <Form.Label>Labor Hours</Form.Label>
+            <Form.Control placeholder="Hours" />
+            <Form.Text>
+                Must be to the 1st decimal eg. 1.5 is an hour and a half
+            </Form.Text>
         </Form.Group>
 
-        <Form.Group as={Col} controlId="formGridState">
-        <Form.Label>State</Form.Label>
-        <Form.Select defaultValue="Choose...">
-            <option>Choose...</option>
-            <option>...</option>
-        </Form.Select>
+        <Form.Group as={Col} className="mb-3" controlId="formGridHourlyRate">
+            <Form.Label>Hourly Rate</Form.Label>
+            <Form.Control placeholder="Hourly Rate" />
+            <Form.Text>
+                Must be in 25.99 format, no dollar sign
+            </Form.Text>
         </Form.Group>
 
-        <Form.Group as={Col} controlId="formGridZip">
-        <Form.Label>Zip</Form.Label>
-        <Form.Control />
+        <Form.Group as={Col} controlId="formGridTotalCost">
+        <Form.Label>Total Cost</Form.Label>
+        <Form.Control   disabled/>
         </Form.Group>
     </Row>
 
-    <Form.Group className="mb-3" id="formGridCheckbox">
-        <Form.Check type="checkbox" label="Check me out" />
-    </Form.Group>
 
     <Button variant="primary" type="submit">
         Submit

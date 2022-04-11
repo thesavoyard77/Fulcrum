@@ -1,0 +1,13 @@
+.form.xx.form-add {
+    margin-left: 5vw;
+    margin-top: 2vw;
+    height: 80vh;
+    width: 90vw;
+    color:black;
+    background-color: #c4ebf1;
+    font-weight:bold;
+    text-align: center;
+    border: 1px solid grey;
+    padding: 10px;
+    padding-top: 5vh;
+}
