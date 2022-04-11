@@ -14,7 +14,7 @@ function App() {
     let value;
     try {
       value = localStorage.setItem(`workOrderStorage:`, JSON.stringify(workOrders))
-      console.log(value, "try")
+   
     } catch {
         value = undefined;
     }
@@ -22,13 +22,12 @@ function App() {
   });
 
   useEffect(() => {
-  if (workOrders == undefined) {
+  if (workOrders === undefined) {
       try {
         setWorkOrders(JSON.parse(localStorage.getItem(`workOrderStorage:`)))
   
       } catch (e) {
           csv(data).then(setWorkOrders)
-          console.log(workOrders, "useEffect")
           localStorage.setItem(`workOrderStorage:`, JSON.stringify(workOrders))
       }
 

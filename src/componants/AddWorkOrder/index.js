@@ -98,10 +98,8 @@ export default function AddWorkOrder() {
           let newArray = [...workOrders]
           newArray.push(data)
           setWorkOrders(newArray)
-            console.log(workOrders, "after")
           setTimeout(() => navigate('/'), 500)
       }
-      console.log(workOrders, "before")
       
 
     return (

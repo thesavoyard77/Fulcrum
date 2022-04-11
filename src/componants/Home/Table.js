@@ -1,8 +1,6 @@
 import './Home.css'
 import { useEffect } from "react";
 import { useState } from "react";
-import { useDispatch, useSelector } from 'react-redux'
-import { csv } from 'd3';
 import Button from 'react-bootstrap/Button';
 
 
@@ -30,7 +28,6 @@ export default function Table() {
         setWorkOrders(newArray)
     }
     
-   console.log(workOrders, "home")
         return(
     <>
         {workOrders ? 
