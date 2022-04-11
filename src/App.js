@@ -22,11 +22,18 @@ function App() {
   });
 
   useEffect(() => {
-    if (!workOrders) {
-      csv(data).then(setWorkOrders)
+  if (workOrders == undefined) {
+      try {
+        setWorkOrders(JSON.parse(localStorage.getItem(`workOrderStorage:`)))
+  
+      } catch (e) {
+          csv(data).then(setWorkOrders)
+          console.log(workOrders, "useEffect")
+          localStorage.setItem(`workOrderStorage:`, JSON.stringify(workOrders))
+      }
+
   }
-  console.log(workOrders, "useEffect")
-    localStorage.setItem(`workOrderStorage:`, JSON.stringify(workOrders))
+
 }, [workOrders])
 
 

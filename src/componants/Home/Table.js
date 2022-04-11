@@ -30,7 +30,7 @@ export default function Table() {
         setWorkOrders(newArray)
     }
     
-   
+   console.log(workOrders, "home")
         return(
     <>
         {workOrders ? 
