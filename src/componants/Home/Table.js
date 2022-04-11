@@ -15,7 +15,7 @@ export default function Table() {
             csv(data).then(setWorkOrders)
         }
     }, [])
-    console.log(workOrders)
+    
     const handleDelete = (index) => {
         let newArray = [...workOrders]
         newArray.splice(index, 1)
