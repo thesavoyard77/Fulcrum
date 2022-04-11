@@ -22,7 +22,7 @@ export default function Table() {
       useEffect(() => {
         localStorage.setItem(`workOrderStorage:`, JSON.stringify(workOrders))
     }, [workOrders])
-    console.log(workOrders)
+    
     
     const handleDelete = (index) => {
         let newArray = [...workOrders]

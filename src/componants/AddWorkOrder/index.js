@@ -32,6 +32,7 @@ export default function AddWorkOrder() {
 
       const [workOrders , setWorkOrders ] = useState(loadWorkOrders)
 
+
       //Increment work order number
       let lastWONum = workOrders[workOrders.length -1]?.Work_Order_Number
       lastWONum = lastWONum?.split('-')
@@ -97,11 +98,11 @@ export default function AddWorkOrder() {
           let newArray = [...workOrders]
           newArray.push(data)
           setWorkOrders(newArray)
-          console.log(newArray, "after")
+        
           setTimeout(() => navigate('/'), 500)
       }
 
-      console.log(workOrders, "before")
+      
 
     return (
 <>
