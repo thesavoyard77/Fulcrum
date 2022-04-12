@@ -21,7 +21,10 @@ export default function Parent() {
         localStorage.setItem(`workOrderStorage:`, JSON.stringify(workOrders))
     }, [workOrders])
     
-    
+    const handleEditClick = (e, index) => {
+        e.preventDefault();
+        setEditWorkOrders(index)
+    }
 
     
         return(
@@ -40,13 +43,22 @@ export default function Parent() {
                                 <th className="table_head">Labor Cost</th>
                                 <th className="table_head">Material Cost</th>
                                 <th className="table_head">Total</th>
+                                <th className="table_head">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
                             {workOrders?.map((workOrder, index) => 
                                 <Fragment key={index} >  
-                                    { editWorkOrders === index ? <Form workOrder={workOrder} workOrders={workOrders} setWorkOrders={setWorkOrders}  />
-                                    : <Table workOrder={workOrder} workOrders={workOrders} setWorkOrders={setWorkOrders}  />}
+                                    { editWorkOrders === index ? <Form
+                                     workOrder={workOrder}
+                                      workOrders={workOrders}
+                                       setWorkOrders={setWorkOrders}  />
+                                    : <Table
+                                     workOrder={workOrder}
+                                     workOrders={workOrders}
+                                     index={index}
+                                     setWorkOrders={setWorkOrders}
+                                     handleEditClick={handleEditClick}/>}
                                 </Fragment>
                             )}
                         </tbody>

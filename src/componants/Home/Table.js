@@ -1,13 +1,15 @@
 import React from "react";
 import Button from 'react-bootstrap/Button';
 
-export default function({workOrder, workOrders, setWorkOrders, index}) {
+export default function({workOrder, workOrders, setWorkOrders, index, handleEditClick}) {
 
     const handleDelete = () => {
         let newArray = [...workOrders]
         newArray.splice(index, 1)
         setWorkOrders(newArray)
     }
+
+    
    
     return (
         <tr  className="work-orders">
@@ -20,11 +22,10 @@ export default function({workOrder, workOrders, setWorkOrders, index}) {
             <td className="table_data">{`\$${workOrder?.Material_cost}`}</td>
             <td className="table_data">{`\$${workOrder?.Total}`}</td>
             <td className="table_data">
-                <Button variant="info" size="sm" id="edit_button">Edit</Button>
-            </td>
-            <td className="table_data">
+                <Button variant="info" size="sm" id="edit_button" onClick={(event) => handleEditClick(event, index)}>Edit</Button>
                 <Button variant="danger" size="sm" id="delete_button" onClick={() => handleDelete(index)}>Delete</Button>
             </td>
+
         </tr>
       
     )

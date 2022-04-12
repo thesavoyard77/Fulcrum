@@ -130,10 +130,11 @@ export default function Form({workOrder, workOrders, setWorkOrders, index}) {
             </td>
             <td className="table_data">
                 <Button variant="info" size="sm" id="edit_button">Edit</Button>
-            </td>
-            <td className="table_data">
                 <Button variant="danger" size="sm" id="delete_button" onClick={() => console.log("cancel")}>Cancel</Button>
             </td>
+     
+               
+     
         </tr>
     )
 }
