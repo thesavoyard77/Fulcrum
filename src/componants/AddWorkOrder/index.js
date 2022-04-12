@@ -34,11 +34,20 @@ export default function AddWorkOrder() {
 
 
       //Increment work order number
-      let lastWONum = workOrders[workOrders.length -1]?.Work_Order_Number
-      lastWONum = lastWONum?.split('-')
-      let increment = +lastWONum[1]
-      increment = increment += 1;
-      increment = `${lastWONum[0]}-${increment}`
+      let lastWONum;
+      let increment;
+      try {
+        lastWONum = workOrders[workOrders.length -1]?.Work_Order_Number
+        lastWONum = lastWONum?.split('-')
+        increment = +lastWONum[1]
+        increment = increment += 1;
+        increment = `${lastWONum[0]}-${increment}`
+
+      } catch {
+        lastWONum = null;
+        increment = null;
+      }
+
       
       //   update all of the values before submitting
       const updateProperty = (e) => {
