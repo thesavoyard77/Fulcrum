@@ -1,8 +1,0 @@
-"Work_Order_Number","Property","Unit","Description","Labor_Hours","Labor_cost","Material_cost","Total"
-"WO-1003","Pine Haven","A10","Leaky sink","0.5","30.00","20.85","50.85"
-"WO-1004","Skyview Downtown","12B","Carpet Cleaning","2","84.00","36.50","120.50"
-"WO-1005","Skyview Downtown","24C","Stain Removal In carpet","0.5","12.00","18.00","30.00"
-"WO-1006","Clock Tower","8","HVAC Service","2","108.00","88.00","196.00"
-"WO-1007","Pine Haven","1D","Hole in wall","2","113.30","57.75","120.50"
-"WO-1008","Skyview Downtown","24C","Carpet Cleaning","2","84.00","36.50","120.50"
-"WO-1009","Pine Haven","22F","Hole in wall","1.5","42.50","57.75","100.25"
