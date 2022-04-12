@@ -1,6 +1,4 @@
-import {WorkOrders} from './public/workOrders.js'
 import './App.css';
-import { csv } from 'd3';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import React, { useState, useEffect } from "react";
 import Navbar from './componants/Navbar/Navbar'
@@ -23,7 +21,7 @@ useEffect(() => {
   
   useEffect(() => {
     if (!workOrders) {
-      setWorkOrders(WorkOrders)
+      setWorkOrders(workOrders)
   }
     localStorage.setItem(`workOrderStorage:`, JSON.stringify(workOrders))
 }, [workOrders])

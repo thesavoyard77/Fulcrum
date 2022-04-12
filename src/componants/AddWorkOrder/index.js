@@ -104,8 +104,7 @@ export default function AddWorkOrder() {
       
       const handleSubmit = (e) => {
           e.preventDefault()
-          let newArray = [...workOrders]
-          newArray.push(data)
+          let newArray = [...workOrders, data]
           setWorkOrders(newArray)
           setTimeout(() => navigate('/'), 500)
       }
@@ -168,7 +167,7 @@ export default function AddWorkOrder() {
 
         <Form.Group as={Col} className="mb-3" controlId="formGridMaterialCost">
             <Form.Label>Material Cost</Form.Label>
-            <Form.Control 
+            <Form.Control placeholder="Material Cost"
                 name="materialCost"
                 onChange={upDateMaterialCost}
              />
@@ -204,7 +203,7 @@ export default function AddWorkOrder() {
         <Form.Label>Total Cost</Form.Label>
         <Form.Control   disabled
             name="totalCost"
-            value={total}
+            value={`\$${total}`}
         />
         </Form.Group>
     </Row>
