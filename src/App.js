@@ -12,18 +12,6 @@ import axios from 'axios'
 function App() {
   const [workOrders, setWorkOrders] = useState([])
 
-  // const [workOrders , setWorkOrders ] = useState(() => {
-  //   let value;
-  //   try {
-  //     value = localStorage.setItem(`workOrderStorage:`, JSON.stringify(workOrders))
-  //   } catch {
-  //       value = undefined;
-  //   }
-  //   return value;
-  // });
-
-
-
 const fetchData = async() => {
   const results = await axios.get('/.netlify/functions/workOrders')
   setWorkOrders(results.data)
