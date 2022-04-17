@@ -15,7 +15,7 @@ export default function Parent() {
         Labor_cost: "",
         Material_cost: "",
         Total: "",
-    })
+    });
 
     const [workOrders , setWorkOrders ] = useState(() => {
         let value;
@@ -31,9 +31,10 @@ export default function Parent() {
         localStorage.setItem(`workOrderStorage:`, JSON.stringify(workOrders))
     }, [workOrders])
     
-    const handleEditClick = (e, index, workOrder) => {
+    const handleEditClick = (e, index) => {
         e.preventDefault();
         setEditWorkOrderIndex(index)
+        let workOrder = workOrders[index]
 
         const formValues = {
             Work_Order_Number: workOrder?.Work_Order_Number,
@@ -45,6 +46,7 @@ export default function Parent() {
             Material_cost: workOrder?.Material_cost,
             Total: workOrder?.Total,
         }
+        console.log(workOrder)
         setEditData(formValues)
     }
 
@@ -54,6 +56,7 @@ export default function Parent() {
         const fieldValue = event.target.getAttribute('value');
         const newData = {...editData}
         newData[fieldName] = fieldValue;
+        setEditData(newData)
     }
         return(
     <>
@@ -80,8 +83,8 @@ export default function Parent() {
                                     { editWorkOrderIndex === index ? <Form
                                      workOrder={workOrder}
                                      workOrders={workOrders}
-                                     formValues={formValues}
-                                     index={index}
+                                     editData={editData}
+                                     setEditWorkOrderIndex={setEditWorkOrderIndex}
                                      handleEditSave={handleEditSave}
                                      setWorkOrders={setWorkOrders}  />
                                     : <Table

@@ -7,16 +7,16 @@ import { useNavigate } from 'react-router-dom';
 
 
 export default function AddWorkOrder() {
-    let defaultDescription = "Broken light fixture"
     let defaultProperty = "StoneBrook"
     const [errors , setErrors ] = useState();
     const [property, setProperty] = useState(defaultProperty);
     const[unit, setUnit] = useState();
-    const [description , setDescription] = useState(defaultDescription);
+    const [description , setDescription] = useState();
     const [laborHours, setLaborHours] = useState();
     const [laborRate, setLaborRate] = useState();
     const [laborCost, setLaborCost] = useState();
-    const [ materialCost, setMaterialCost] = useState();
+    const [ material, setMaterial] = useState([]);
+    const [ materialCost, setMaterialCost] = useState([]);
     const [total, setTotal] = useState(0.00);
     const navigate = useNavigate();
     
@@ -61,6 +61,10 @@ export default function AddWorkOrder() {
       const updateDescription = (e) => {
         setDescription(e.target.value)
       }
+
+      const upDateMaterial = (e) => {
+        setMaterial(e.target.value)
+  }
 
       const upDateMaterialCost = (e) => {
             setMaterialCost(e.target.value)
@@ -138,9 +142,9 @@ export default function AddWorkOrder() {
             <option>Clock Tower</option>
         </Form.Control>
         </Form.Group>
-    </Row>
 
-    <Row className="mb-3">
+
+
         <Form.Group as={Col} className="mb-3" controlId="formGridUnit">
             <Form.Label>Unit Number</Form.Label>
             <Form.Control placeholder="Unit Number"
@@ -150,19 +154,25 @@ export default function AddWorkOrder() {
         </Form.Group>
 
         <Form.Group as={Col} controlId="formGridDescription">
-        <Form.Label>Description</Form.Label>
+        <Form.Label>Maintenance Description</Form.Label>
         <Form.Control
-            as="select"
             name="description"
             onChange={updateDescription}
          >
-            <option>Broken light fixture</option>
-            <option>Hole in wall</option>
-            <option>Leaky sink</option>
-            <option>Carpet Cleaning</option>
-            <option>Stain Removal In carpet</option>
-            <option>HVAC Service</option>
         </Form.Control>
+        </Form.Group>
+
+    </Row>
+
+    <Row className="mb-3">
+
+        <Form.Group as={Col} controlId="formGridMaterial">
+            <Form.Label>Material </Form.Label>
+            <Form.Control
+                name="material"
+                onChange={upDateMaterial}
+            >
+            </Form.Control>
         </Form.Group>
 
         <Form.Group as={Col} className="mb-3" controlId="formGridMaterialCost">
@@ -199,20 +209,22 @@ export default function AddWorkOrder() {
             </Form.Text>
         </Form.Group>
 
-        <Form.Group as={Col} controlId="formGridTotalCost">
-        <Form.Label>Total Cost</Form.Label>
-        <Form.Control   disabled
-            name="totalCost"
-            value={`\$${total}`}
-        />
-        </Form.Group>
+
     </Row>
 
-
-    <Button variant="primary" type="submit">
-        Submit
-    </Button>
-    </Form>
-
+    <Row className="mb-3">
+        <Form.Group as={Col} controlId="formGridTotalCost">
+            <Form.Label>Total Cost</Form.Label>
+            <Form.Control   disabled
+                name="totalCost"
+                value={`\$${total}`}
+            />
+        </Form.Group>
+    </Row>
+        <Button variant="primary" type="submit">
+            Submit
+        </Button>
+        </Form>
+    
 </>
 )}

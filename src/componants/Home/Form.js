@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Button from 'react-bootstrap/Button';
 
-export default function Form({workOrder, workOrders, setWorkOrders, formValues, handleEditSave}) {
+export default function Form({workOrder, workOrders, setWorkOrders, setEditWorkOrderIndex, editData, handleEditSave}) {
 
     const [errors , setErrors ] = useState();
     const [property, setProperty] = useState(workOrder?.Property);
@@ -58,18 +58,19 @@ export default function Form({workOrder, workOrders, setWorkOrders, formValues, 
         Total: total,
       }
 
-      const handleSubmit = (e) => {
-        e.preventDefault()
-        let newArray = [...workOrders, data]
-        setWorkOrders(newArray)
-    }
+    //   const handleSubmit = (e) => {
+    //     e.preventDefault()
+    //     let newArray = [...workOrders, data]
+    //     setWorkOrders(newArray)
+    // }
 
     return (
         <tr>
             <td className="form_data">{workOrder?.Work_Order_Number}</td>
             <td className="form_data">
                 <select
-                    onChange={updateProperty}
+                    value={editData.Property}
+                    onChange={handleEditSave}
                 >
                     <option>StoneBrook</option>
                     <option>Pine Haven</option>
@@ -83,12 +84,14 @@ export default function Form({workOrder, workOrders, setWorkOrders, formValues, 
                     required="required"
                     placeholder="Enter new unit number"
                     name="unit"
-                    onChange={updateUnit}
+                    value={editData.Unit}
+                    onChange={handleEditSave}
                 ></input>
             </td>
             <td className="form_data">
                 <select
-                    onChange={updateDescription}
+                    value={editData.Description}
+                    onChange={handleEditSave}
                 >
                     <option>Broken light fixture</option>
                     <option>Hole in wall</option>
@@ -104,7 +107,8 @@ export default function Form({workOrder, workOrders, setWorkOrders, formValues, 
                     required="required"
                     placeholder="Enter new labor hours"
                     name="laborHours"
-                    onChange={upDateLaborHours}
+                    value={editData.Labor_Hours}
+                    onChange={handleEditSave}
                 ></input>
             </td>
             <td className="form_data">
@@ -113,7 +117,8 @@ export default function Form({workOrder, workOrders, setWorkOrders, formValues, 
                     required="required"
                     placeholder="Enter hourly rate"
                     name="laborRate"
-                    onChange={upDateLaborRate}
+                    value={editData.laborRate}
+                    onChange={handleEditSave}
                 ></input>
             </td>
             <td className="form_data">
@@ -122,15 +127,16 @@ export default function Form({workOrder, workOrders, setWorkOrders, formValues, 
                     required="required"
                     placeholder="Enter new material cost"
                     name="materialCost"
-                    onChange={upDateMaterialCost}
+                    value={editData.Material_cost}
+                    onChange={handleEditSave}
                 ></input>
             </td>
             <td className="form_data">
-                {`\$${workOrder?.Total}`}
+                {`$${workOrder?.Total}`}
             </td>
             <td className="table_data">
-                <Button variant="info" size="sm" id="edit_button">Edit</Button>
-                <Button variant="danger" size="sm" id="delete_button" onClick={() => console.log("cancel")}>Cancel</Button>
+                <Button variant="info" size="sm" id="save_button">Save</Button>
+                <Button variant="danger" size="sm" id="delete_button" onClick={() => setEditWorkOrderIndex()}>Cancel</Button>
             </td>
      
                
