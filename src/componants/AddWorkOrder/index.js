@@ -12,11 +12,13 @@ export default function AddWorkOrder() {
     const [property, setProperty] = useState(defaultProperty);
     const[unit, setUnit] = useState();
     const [description , setDescription] = useState();
+    const [ material, setMaterial] = useState([]);
+    const [ materialCost, setMaterialCost] = useState([]);
+    const [ materialTotal, setMaterialTotal] = useState([]);
+    const [laborType, setLaborType] = useState();
     const [laborHours, setLaborHours] = useState();
     const [laborRate, setLaborRate] = useState();
     const [laborCost, setLaborCost] = useState();
-    const [ material, setMaterial] = useState([]);
-    const [ materialCost, setMaterialCost] = useState([]);
     const [total, setTotal] = useState(0.00);
     const navigate = useNavigate();
     
@@ -143,8 +145,6 @@ export default function AddWorkOrder() {
         </Form.Control>
         </Form.Group>
 
-
-
         <Form.Group as={Col} className="mb-3" controlId="formGridUnit">
             <Form.Label>Unit Number</Form.Label>
             <Form.Control placeholder="Unit Number"
@@ -181,11 +181,28 @@ export default function AddWorkOrder() {
                 name="materialCost"
                 onChange={upDateMaterialCost}
              />
-            <Form.Text>
-                Must be in 25.99 format, no dollar sign
-            </Form.Text>
         </Form.Group>
+
+
+        <Form.Group as={Col} controlId="formGridMaterialtotal">
+        <Form.Label>Total Material Cost</Form.Label>
+        <Form.Control  placeholder="WO-1001" disabled
+            name="Work_Order_Number"
+            value={"0.00"}
+        />
+        </Form.Group>
+
+        <Form.Group as={Col} controlId="formGridMaterialtotal" className="d-flex align-items-center justify-content-center">
+            <div >
+                <Button variant="secondary" size="sm" className="add-material" onClick={(event) => console.log("button")}>Add</Button>
+            </div>
+        </Form.Group>
+
+        <Form.Text>
+                Must be in 25.99 format, no dollar sign
+        </Form.Text>
     </Row>
+
     <Row className="mb-3">
         <Form.Group as={Col} className="mb-3" controlId="formGridHours">
             <Form.Label>Labor Hours</Form.Label>
