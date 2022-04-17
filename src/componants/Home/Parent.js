@@ -5,7 +5,17 @@ import Form from "./Form.js"
 
 
 export default function Parent() {
-    const [editWorkOrders, setEditWorkOrders] = useState(null)
+    const [editWorkOrderIndex, setEditWorkOrderIndex] = useState(null)
+    const [editData, setEditData] = useState({
+        Work_Order_Number: "",
+        Property: "",
+        Unit: "",
+        Description: "",
+        Labor_Hours: "",
+        Labor_cost: "",
+        Material_cost: "",
+        Total: "",
+    })
 
     const [workOrders , setWorkOrders ] = useState(() => {
         let value;
@@ -21,12 +31,30 @@ export default function Parent() {
         localStorage.setItem(`workOrderStorage:`, JSON.stringify(workOrders))
     }, [workOrders])
     
-    const handleEditClick = (e, index) => {
+    const handleEditClick = (e, index, workOrder) => {
         e.preventDefault();
-        setEditWorkOrders(index)
+        setEditWorkOrderIndex(index)
+
+        const formValues = {
+            Work_Order_Number: workOrder?.Work_Order_Number,
+            Property: workOrder?.Property,
+            Unit: workOrder?.Unit,
+            Description: workOrder?.Description,
+            Labor_Hours: workOrder?.Labor_Hours,
+            Labor_cost: workOrder?.Labor_cost,
+            Material_cost: workOrder?.Material_cost,
+            Total: workOrder?.Total,
+        }
+        setEditData(formValues)
     }
 
-    
+    const handleEditSave = (event) => {
+        event.preventDefault();
+        const fieldName = event.target.getAttribute('name');
+        const fieldValue = event.target.getAttribute('value');
+        const newData = {...editData}
+        newData[fieldName] = fieldValue;
+    }
         return(
     <>
         {workOrders ? 
@@ -49,10 +77,13 @@ export default function Parent() {
                         <tbody>
                             {workOrders?.map((workOrder, index) => 
                                 <Fragment key={index} >  
-                                    { editWorkOrders === index ? <Form
+                                    { editWorkOrderIndex === index ? <Form
                                      workOrder={workOrder}
-                                      workOrders={workOrders}
-                                       setWorkOrders={setWorkOrders}  />
+                                     workOrders={workOrders}
+                                     formValues={formValues}
+                                     index={index}
+                                     handleEditSave={handleEditSave}
+                                     setWorkOrders={setWorkOrders}  />
                                     : <Table
                                      workOrder={workOrder}
                                      workOrders={workOrders}

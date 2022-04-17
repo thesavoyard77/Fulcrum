@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Button from 'react-bootstrap/Button';
 
-export default function Form({workOrder, workOrders, setWorkOrders, index}) {
+export default function Form({workOrder, workOrders, setWorkOrders, formValues, handleEditSave}) {
 
     const [errors , setErrors ] = useState();
     const [property, setProperty] = useState(workOrder?.Property);
