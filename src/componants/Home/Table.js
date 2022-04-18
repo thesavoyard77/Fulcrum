@@ -13,15 +13,14 @@ export default function({workOrder, workOrders, setWorkOrders, index, handleEdit
    
     return (
         <tr  className="work-orders">
-            <td className="table_data">{workOrder?.Work_Order_Number}</td>
-            <td className="table_data">{workOrder?.Property}</td>
-            <td className="table_data">{workOrder?.Unit}</td>
-            <td className="table_data">{workOrder?.Description}</td>
-            <td className="table_data">{workOrder?.Labor_Hours}</td>
-            <td className="table_data">{`\$${workOrder?.Labor_cost}`}</td>
-            <td className="table_data">{`\$${workOrder?.Material_cost}`}</td>
-            <td className="table_data">{`\$${workOrder?.Total}`}</td>
-            <td className="table_data">
+            <td className="table_data_main">{workOrder?.Work_Order_Number}</td>
+            <td className="table_data_main">{workOrder?.Property}</td>
+            <td className="table_data_main">{workOrder?.Unit}</td>
+            <td className="table_data_main">{workOrder?.Description}</td>
+            <td className="table_data_main">{`$${workOrder?.Material_Total}`}</td>
+            <td className="table_data_main">{`$${workOrder?.Labor_Total}`}</td>
+            <td className="table_data_main">{`$${workOrder?.Total}`}</td>
+            <td className="table_data_main">
                 <Button variant="info" size="sm" id="edit_button" onClick={(event) => handleEditClick(event, index)}>Edit</Button>
                 <Button variant="danger" size="sm" id="delete_button" onClick={() => handleDelete(index)}>Delete</Button>
             </td>

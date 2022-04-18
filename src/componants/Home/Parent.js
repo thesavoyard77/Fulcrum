@@ -70,9 +70,8 @@ export default function Parent() {
                                 <th className="table_head">Property</th>
                                 <th className="table_head">Unit</th>
                                 <th className="table_head" id="description">Description</th>
-                                <th className="table_head">Labor Hours</th>
-                                <th className="table_head">Labor Cost</th>
-                                <th className="table_head">Material Cost</th>
+                                <th className="table_head">Total Material Cost</th>
+                                <th className="table_head">Total Labor Cost</th>
                                 <th className="table_head">Total</th>
                                 <th className="table_head">Actions</th>
                             </tr>
