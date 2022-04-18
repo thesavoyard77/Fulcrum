@@ -9,16 +9,32 @@ import { useNavigate } from 'react-router-dom';
 export default function AddWorkOrder() {
     let defaultProperty = "StoneBrook"
     const [errors , setErrors ] = useState();
+
+    //Property
     const [property, setProperty] = useState(defaultProperty);
-    const[unit, setUnit] = useState();
-    const [description , setDescription] = useState();
-    const [ material, setMaterial] = useState([]);
+    const[unit, setUnit] = useState("");
+
+    //Description
+    const [description , setDescription] = useState("");
+
+    //Materials
+    const [tempMaterial, setTempMaterial] = useState("");
+    const [ materials, setMaterials] = useState([]);
+    const [tempMaterialCost, setTempMaterialCost] = useState();
     const [ materialCost, setMaterialCost] = useState([]);
-    const [ materialTotal, setMaterialTotal] = useState([]);
-    const [laborType, setLaborType] = useState();
-    const [laborHours, setLaborHours] = useState();
-    const [laborRate, setLaborRate] = useState();
-    const [laborCost, setLaborCost] = useState();
+    const [ materialTotal, setMaterialTotal] = useState(0.00);
+
+    //Labor
+    const [tempLaborType, setTempLaborType] = useState("");
+    const [laborType, setLaborType] = useState([]);
+    const [tempLaborHours, setTempLaborHours] = useState("");
+    const [laborHours, setLaborHours] = useState([]);
+    const [tempLaborRate, setTempLaborRate] = useState("");
+    const [laborRate, setLaborRate] = useState([]);
+    const [laborCost, setLaborCost] = useState([]);
+    const [laborTotal, setLaborTotal] = useState(0.00);
+
+    //Total Cost
     const [total, setTotal] = useState(0.00);
     const navigate = useNavigate();
     
@@ -65,42 +81,93 @@ export default function AddWorkOrder() {
       }
 
       const upDateMaterial = (e) => {
-        setMaterial(e.target.value)
-  }
+        setTempMaterial(e.target.value)
+    }
 
-      const upDateMaterialCost = (e) => {
-            setMaterialCost(e.target.value)
+      const updateTempMaterialCost = (e) => {
+            setTempMaterialCost(e.target.value)
+      }
+
+      const upDateLaborType = (e) => {
+        setTempLaborType(e.target.value)
       }
 
       const upDateLaborHours = (e) => {
-        setLaborHours(e.target.value)
+        setTempLaborHours(e.target.value)
       }
 
       const upDateLaborRate = (e) => {
-        setLaborRate(e.target.value)
+        setTempLaborRate(e.target.value)
       }
 
+    //   Set the new material items in the array
+
+      const handleMaterialAdd = (e) => {
+          e.preventDefault();
+          let newMaterial = [...materials, tempMaterial]
+          let newMaterialCost = [...materialCost, tempMaterialCost]
+          setMaterials(newMaterial)
+          setMaterialCost(newMaterialCost)
+          setTempMaterial('')
+          setTempMaterialCost('')
+      }
+
+      const handleLaborAdd = (e) => {
+        e.preventDefault();
+        let newLabor = [...laborType, tempLaborType]
+        let newLaborHours = [...laborHours, tempLaborHours]
+        let newLaborRate = [...laborRate, tempLaborRate]
+        let tempLaborCost = (`${(+tempLaborHours * +tempLaborRate).toFixed(2)}`)
+        let newLaborCost = [...laborCost, tempLaborCost]
+        setLaborType(newLabor)
+        setLaborHours(newLaborHours)
+        setLaborRate(newLaborRate)
+        setLaborCost(newLaborCost)
+        setTempLaborType('')
+        setTempLaborHours('')
+        setTempLaborRate('')
+    }
+
+  
+    //  Track totals for labor and materials and update the grand total
       useEffect(()=> {
-        if (laborHours && laborRate && materialCost) {
-            let costOfLabor = +laborHours * +laborRate;
-            setLaborCost(costOfLabor)
-            let newTotal = costOfLabor + +materialCost;
+        if (laborTotal && materialTotal) {
+            let newTotal = +laborTotal + +materialTotal;
             newTotal = newTotal.toFixed(2)
             setTotal(newTotal)
         }
-      },[laborHours, laborRate, materialCost])
+      },[laborTotal, materialTotal])
 
+        // Calculate the sum of all material costs and set the total
+      useEffect(() => {
+          if (materialCost.length) {
+            let newMaterialCost = materialCost?.reduce((prev, current) =>( +prev + +current).toFixed(2))
+            setMaterialTotal(newMaterialCost)
+          }
+      }, [materialCost])
 
-     
+      // Calculate the sum of all contractor costs and set the total
+      
+      useEffect(() => {
+        if (laborCost.length) {
+          let newLaborTotal = laborCost?.reduce((prev, current) =>( +prev + +current).toFixed(2))
+          setLaborTotal(newLaborTotal)
+        }
+    }, [laborCost])
 
       let data = {
         Work_Order_Number: increment,
         Property: property,
         Unit: unit,
         Description: description,
+        Materials: materials,
+        Material_Cost: materialCost,
+        Material_Total: materialTotal,
+        Labor_Type: laborType,
         Labor_Hours: laborHours,
-        Labor_cost: laborCost,
-        Material_cost: materialCost,
+        Labor_Rate: laborRate,
+        Labor_Cost: laborCost,
+        Labor_Total: laborTotal,
         Total: total,
       }
 
@@ -114,8 +181,8 @@ export default function AddWorkOrder() {
           setWorkOrders(newArray)
           setTimeout(() => navigate('/'), 500)
       }
-      
 
+      console.log(laborType, laborHours, laborRate, laborCost, laborTotal)
     return (
 <>
     <Form className="form form-add xx" onSubmit={handleSubmit}>
@@ -168,7 +235,8 @@ export default function AddWorkOrder() {
 
         <Form.Group as={Col} controlId="formGridMaterial">
             <Form.Label>Material </Form.Label>
-            <Form.Control
+            <Form.Control placeholder="Material Name"
+                value={tempMaterial}
                 name="material"
                 onChange={upDateMaterial}
             >
@@ -179,7 +247,8 @@ export default function AddWorkOrder() {
             <Form.Label>Material Cost</Form.Label>
             <Form.Control placeholder="Material Cost"
                 name="materialCost"
-                onChange={upDateMaterialCost}
+                value={tempMaterialCost}
+                onChange={updateTempMaterialCost}
              />
         </Form.Group>
 
@@ -188,50 +257,72 @@ export default function AddWorkOrder() {
         <Form.Label>Total Material Cost</Form.Label>
         <Form.Control  placeholder="WO-1001" disabled
             name="Work_Order_Number"
-            value={"0.00"}
+            value={`$${materialTotal ?? ""}`}
         />
         </Form.Group>
 
-        <Form.Group as={Col} controlId="formGridMaterialtotal" className="d-flex align-items-center justify-content-center">
-            <div >
-                <Button variant="secondary" size="sm" className="add-material" onClick={(event) => console.log("button")}>Add</Button>
-            </div>
+        <Form.Group as={Col} controlId="formGridMaterialtotal" className="d-flex align-items-center justify-content-center col-sm-1">
+                <Button variant="secondary" size="sm" className="add-material" onClick={(event) => handleMaterialAdd(event)}>Add</Button>
         </Form.Group>
 
-        <Form.Text>
-                Must be in 25.99 format, no dollar sign
-        </Form.Text>
+        
+        {materials?.map((material, ind) => (
+                <div key={ind} ><b>{`${ind + 1}. Material: ${material}, Price: $${materialCost[ind]}`}</b></div>
+                ))}
+        
     </Row>
 
     <Row className="mb-3">
+
+    <Form.Group as={Col} className="mb-3" controlId="formGridLaborType">
+            <Form.Label>Labor Type</Form.Label>
+            <Form.Control placeholder="Labor Type" 
+                value={tempLaborType}
+                name="laborType"
+                onChange={upDateLaborType}
+            />
+
+        </Form.Group>
+        
         <Form.Group as={Col} className="mb-3" controlId="formGridHours">
             <Form.Label>Labor Hours</Form.Label>
             <Form.Control placeholder="Hours" 
+                value={tempLaborHours}
                 name="laborHours"
                 onChange={upDateLaborHours}
             />
-            <Form.Text>
-                Must be to the 1st decimal eg. 1.5 is an hour and a half
-            </Form.Text>
+
         </Form.Group>
 
         <Form.Group as={Col} className="mb-3" controlId="formGridHourlyRate">
             <Form.Label>Hourly Rate</Form.Label>
             <Form.Control placeholder="Hourly Rate"
                 name="laborRate"
+                value={tempLaborRate}
                 onChange={upDateLaborRate}
             />
-            <Form.Text>
-                Must be in 25.99 format, no dollar sign
-            </Form.Text>
+
+        </Form.Group>
+        <Form.Group as={Col} controlId="formGridLaborTotal">
+        <Form.Label>Total Labor Cost</Form.Label>
+        <Form.Control  placeholder="Total Labor Cost" disabled
+            name="laborTotal"
+            value={`$${laborTotal}`}
+        />
         </Form.Group>
 
+        <Form.Group as={Col} controlId="formGridMaterialtotal" className="d-flex align-items-center justify-content-center col-sm-1">
+                <Button variant="secondary" size="sm" className="add-material" onClick={(event) => handleLaborAdd(event)}>Add</Button>
+        </Form.Group>
+        {laborType?.map((labor, ind) => (
+            <div key={ind} ><b>{`${ind + 1}. Contractor: ${labor}, Hours: ${laborHours[ind]}, Hourly Rate: $${laborRate[ind]}, Contractor Cost: $${laborCost[ind]}`}</b></div>
+         ))}
 
     </Row>
 
     <Row className="mb-3">
-        <Form.Group as={Col} controlId="formGridTotalCost">
-            <Form.Label>Total Cost</Form.Label>
+        <Form.Group as={Col} controlId="formGridTotalCost"className="d-flex align-items-center justify-content-center col-sm-3">
+            <Form.Label className="d-flex align-items-center justify-content-center col-sm-3">Total Cost</Form.Label>
             <Form.Control   disabled
                 name="totalCost"
                 value={`\$${total}`}
