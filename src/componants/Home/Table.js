@@ -10,7 +10,7 @@ export default function({workOrder, workOrders, setWorkOrders, index, handleMore
         setWorkOrders(newArray)
     }
 
-    
+
    
     return (
 <>

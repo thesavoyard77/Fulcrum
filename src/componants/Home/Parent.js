@@ -18,6 +18,8 @@ export default function Parent() {
         return value;
       });
 
+ 
+
       useEffect(() => {
         localStorage.setItem(`workOrderStorage:`, JSON.stringify(workOrders))
     }, [workOrders])
@@ -61,15 +63,12 @@ export default function Parent() {
                                         index={index}
                                         setWorkOrders={setWorkOrders}
                                         handleMoreClick={handleMoreClick}/>
-                                        <SubTable workOrder={workOrder} index={index} />
+                                        <SubTable workOrder={workOrder}
+                                         workOrders={workOrders}
+                                         setWorkOrders={setWorkOrders}
+                                         index={index} 
+                                        />
                                         </>
-                                    // <Form
-                                    //  workOrder={workOrder}
-                                    //  workOrders={workOrders}
-                                    //  editData={editData}
-                                    //  setMoreWorkOrderIndex={setMoreWorkOrderIndex}
-                                    //  handleEditSave={handleEditSave}
-                                    //  setWorkOrders={setWorkOrders}  />
                                     : <Table
                                      workOrder={workOrder}
                                      workOrders={workOrders}
