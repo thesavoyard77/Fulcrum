@@ -1,7 +1,6 @@
 import './Home.css'
 import { useEffect, useState, Fragment } from "react";
 import Table from "./Table.js"
-import Form from "./Form.js"
 import SubTable from "./SubTable.js"
 
 export default function Parent() {

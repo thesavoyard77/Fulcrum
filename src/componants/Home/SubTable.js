@@ -4,7 +4,7 @@ import Button from 'react-bootstrap/Button';
 
 export default function SubTable({ workOrder, workOrders, setWorkOrders, index }) {
 
-//    console.log(workOrders)
+// Delete a row in the material section
     const handleMaterialDelete = (materialIndex) => {
 
         if (workOrders[index].Materials.length > 1) {
@@ -20,7 +20,7 @@ export default function SubTable({ workOrder, workOrders, setWorkOrders, index }
 
     }
 
-
+// Delete a row in the labor section
     const handleLaborDelete = (laborIndex) => {
         if (workOrders[index].Labor_Type.length > 1) {
             let workOrderArray = [...workOrders]
@@ -36,9 +36,7 @@ export default function SubTable({ workOrder, workOrders, setWorkOrders, index }
         }
     }
 
-    useEffect(() => {
-        localStorage.setItem(`workOrderStorage:`, JSON.stringify(workOrders))
-    }, [workOrders])
+
 
 
     return (
@@ -52,7 +50,7 @@ export default function SubTable({ workOrder, workOrders, setWorkOrders, index }
                         <th className="table_sub_head"></th>
                         <th className="table_sub_head"></th>
                         <th className="table_sub_head"></th>
-                        <th className="table_sub_head">Actions</th>
+                        <th className="table_sub_head"><Button variant="info" size="sm" id="edit_button" onClick={(event) => console.log(event)}>Add</Button></th>
                     </tr>
             
                 {workOrder?.Labor_Type.map((labor, laborIndex) =>
@@ -67,7 +65,6 @@ export default function SubTable({ workOrder, workOrders, setWorkOrders, index }
                         <td className="table_data_sub"></td>
                                                         
                         <td className="table_data_sub">
-                            <Button variant="info" size="sm" id="edit_button" onClick={(event) => console.log(event)}>Edit</Button>
                             <Button variant="danger" size="sm" id="delete_button" onClick={(event) => handleLaborDelete(laborIndex)}>Delete</Button>
                         </td>
                     </tr>
@@ -81,7 +78,7 @@ export default function SubTable({ workOrder, workOrders, setWorkOrders, index }
                     <th className="table_sub_head"></th>
                     <th className="table_sub_head"></th>
                     <th className="table_sub_head"></th>
-                    <th className="table_sub_head"></th>
+                    <th className="table_sub_head"><Button variant="info" size="sm" id="edit_button" onClick={(event) => console.log(event)}>Add</Button></th>
                 </tr>
 
             
@@ -96,7 +93,7 @@ export default function SubTable({ workOrder, workOrders, setWorkOrders, index }
                         <td className="table_data_sub"></td>
                         <td className="table_data_sub"></td>
                         <td className="table_data_sub">
-                            <Button variant="info" size="sm" id="edit_button" onClick={(event) => console.log(event)}>Edit</Button>
+                            
                             <Button variant="danger" size="sm" id="delete_button" onClick={(event) => handleMaterialDelete(materialIndex)}>Delete</Button>
                         </td>
                     </tr>
