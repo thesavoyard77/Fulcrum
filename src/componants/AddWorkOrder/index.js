@@ -203,6 +203,7 @@ export default function AddWorkOrder() {
         <Form.Control
         as="select"
         name="property"
+        required="required"
         onChange={updateProperty}
         >
             <option>StoneBrook</option>
@@ -216,6 +217,7 @@ export default function AddWorkOrder() {
             <Form.Label>Unit Number</Form.Label>
             <Form.Control placeholder="Unit Number"
             name="unit"
+            required="required"
             onChange={updateUnit}
             />
         </Form.Group>
@@ -224,6 +226,7 @@ export default function AddWorkOrder() {
         <Form.Label>Maintenance Description</Form.Label>
         <Form.Control
             name="description"
+            required="required"
             onChange={updateDescription}
          >
         </Form.Control>
@@ -238,6 +241,7 @@ export default function AddWorkOrder() {
             <Form.Control placeholder="Material Name"
                 value={tempMaterial}
                 name="material"
+                required="required"
                 onChange={upDateMaterial}
             >
             </Form.Control>
@@ -247,6 +251,7 @@ export default function AddWorkOrder() {
             <Form.Label>Material Cost</Form.Label>
             <Form.Control placeholder="Material Cost"
                 name="materialCost"
+                required="required"
                 value={tempMaterialCost}
                 onChange={updateTempMaterialCost}
              />
@@ -257,6 +262,7 @@ export default function AddWorkOrder() {
         <Form.Label>Total Material Cost</Form.Label>
         <Form.Control  placeholder="WO-1001" disabled
             name="Work_Order_Number"
+            required="required"
             value={`$${materialTotal ?? ""}`}
         />
         </Form.Group>
@@ -278,6 +284,7 @@ export default function AddWorkOrder() {
             <Form.Label>Labor Type</Form.Label>
             <Form.Control placeholder="Labor Type" 
                 value={tempLaborType}
+                required="required"
                 name="laborType"
                 onChange={upDateLaborType}
             />
@@ -288,6 +295,7 @@ export default function AddWorkOrder() {
             <Form.Label>Labor Hours</Form.Label>
             <Form.Control placeholder="Hours" 
                 value={tempLaborHours}
+                required="required"
                 name="laborHours"
                 onChange={upDateLaborHours}
             />
@@ -298,6 +306,7 @@ export default function AddWorkOrder() {
             <Form.Label>Hourly Rate</Form.Label>
             <Form.Control placeholder="Hourly Rate"
                 name="laborRate"
+                required="required"
                 value={tempLaborRate}
                 onChange={upDateLaborRate}
             />
