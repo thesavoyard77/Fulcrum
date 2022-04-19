@@ -32,3 +32,14 @@ table.ii {
 .edit_button, .delete_button {
     margin: 2rem;
 }
+
+.table_data_sub {
+    /* background-color: #ffffc2!important; */
+    background-color: #faf9f6!important;
+    
+}
+
+.table_sub_head {
+    /* background-color: #fff684!important; */
+    background-color: #fdfddf!important;
+}
