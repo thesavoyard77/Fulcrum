@@ -156,7 +156,7 @@ export default function SubTable({ workOrder, workOrders, setWorkOrders, index }
                         <th className="table_sub_head"></th>
                         <th className="table_sub_head"></th>
                         <th className="table_sub_head"></th>
-                        <th className="table_sub_head"><Button variant="info" size="sm" id="edit_button" onClick={(event) => handleLaborClick(event)}>New Line</Button></th>
+                        <th className="table_sub_head"><Button variant="info" size="sm" id="edit_button" onClick={(event) => handleLaborClick(event)}>Add</Button></th>
                     </tr>
             
                 {workOrder?.Labor_Type.map((labor, laborIndex) =>
@@ -170,7 +170,7 @@ export default function SubTable({ workOrder, workOrders, setWorkOrders, index }
                         <td className="table_data_sub"></td>
                         <td className="table_data_sub"></td>                  
                         <td className="table_data_sub">
-                            <Button variant="danger" size="sm" id="delete_button" onClick={(event) => handleLaborDelete(laborIndex)}>Delete Line</Button>
+                            <Button variant="danger" size="sm" id="delete_button" onClick={(event) => handleLaborDelete(laborIndex)}>X</Button>
                         </td>
                     </tr>
                 </Fragment> )}
@@ -213,7 +213,7 @@ export default function SubTable({ workOrder, workOrders, setWorkOrders, index }
                         <td className="table_data_sub"></td>
                         <td className="table_data_sub"></td>
                         <td className="table_data_sub"><Button variant="info" size="sm" id="submit_button" onClick={(event) => handleLaborSubmit()}>Submit</Button></td>
-                        <td className="table_data_sub"><Button variant="danger" size="sm" id="delete_button" onClick={(event) => handleLaborCancelClick(event)}>Cancel</Button> </td>
+                        <td className="table_data_sub"><Button variant="danger" size="sm" id="cancel_button" onClick={(event) => handleLaborCancelClick(event)}>Cancel</Button> </td>
                     </tr>
                 </>
                :null }
@@ -226,7 +226,7 @@ export default function SubTable({ workOrder, workOrders, setWorkOrders, index }
                     <th className="table_sub_head"></th>
                     <th className="table_sub_head"></th>
                     <th className="table_sub_head"></th>
-                    <th className="table_sub_head"><Button variant="info" size="sm" id="edit_button" onClick={(event) => handleMaterialClick(event)}>New Line</Button></th>
+                    <th className="table_sub_head"><Button variant="info" size="sm" id="edit_button" onClick={(event) => handleMaterialClick(event)}>Add</Button></th>
                 </tr>
 
             
@@ -241,7 +241,7 @@ export default function SubTable({ workOrder, workOrders, setWorkOrders, index }
                         <td className="table_data_sub"></td>
                         <td className="table_data_sub"></td>
                         <td className="table_data_sub">
-                            <Button variant="danger" size="sm" id="delete_button" onClick={(event) => handleMaterialDelete(materialIndex)}>Delete Line</Button>
+                            <Button variant="danger" size="sm" id="delete_button" onClick={(event) => handleMaterialDelete(materialIndex)}>X</Button>
                         </td>
                     </tr>
                 </Fragment>
@@ -273,7 +273,7 @@ export default function SubTable({ workOrder, workOrders, setWorkOrders, index }
                             <td className="table_data_sub"></td>
                             <td className="table_data_sub"></td>
                             <td className="table_data_sub"><Button variant="info" size="sm" id="submit_button" onClick={(event) => handleMaterialSubmit()}>Submit</Button></td>
-                            <td className="table_data_sub"> <Button variant="danger" size="sm" id="delete_button" onClick={(event) => handleMaterialCancelClick(event)}>Cancel</Button></td>
+                            <td className="table_data_sub"> <Button variant="danger" size="sm" id="cancel_button" onClick={(event) => handleMaterialCancelClick(event)}>Cancel</Button></td>
                         </tr>
                     </>
                :null }  

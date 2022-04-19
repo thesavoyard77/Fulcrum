@@ -23,8 +23,8 @@ export default function({workOrder, workOrders, setWorkOrders, index, handleMore
             <td className="table_data_main">{`$${workOrder?.Labor_Total}`}</td>
             <td className="table_data_main">{`$${workOrder?.Total}`}</td>
             <td className="table_data_main">
-                <Button variant="info" size="sm" id="edit_button" onClick={(event) => handleMoreClick(event, index)}>More/Less</Button>
-                <Button variant="danger" size="sm" id="delete_button" onClick={() => handleDelete(index)}>Delete</Button>
+                <Button variant="secondary" size="sm" id="edit_button" onClick={(event) => handleMoreClick(event, index)}>↕</Button>
+                <Button variant="danger" size="sm" id="delete_button" onClick={() => handleDelete(index)}>X</Button>
             </td>
         </tr>
     
